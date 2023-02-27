@@ -1,25 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Playground from "./components/Playground";
+import "./devices.css";
+import { ChatContext } from "./components/context";
+import { MessageProps } from "./components/types";
+import { users } from "./components/Dummies";
+import { uuid4 } from "./components/helper";
 
 function App() {
+  const [messages, setMessages] = useState<Array<MessageProps>>([]);
+  const [composerText, setComposerText] = useState<string>("");
+
+  const addMessage = (text: string) => {
+    let newMessage: MessageProps = {
+      date: new Date(),
+      edited: false,
+      id: uuid4(),
+      pending: false,
+      position: "right",
+      status: 1,
+      text: text,
+      title: users.me.name,
+      type: "text",
+      owner: users.me.id,
+    };
+
+    messages.push(newMessage);
+    setMessages([...messages]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChatContext.Provider
+      value={{
+        loading: false,
+        messages: messages,
+        onTextChange: (text: string) => {
+          setComposerText(text);
+        },
+        onMessageDblClick: () => {},
+        onSendClick: () => {
+          addMessage(composerText);
+          setComposerText("");
+        },
+        composerReplyMessage: () => {},
+        onComposerReplyCancel: () => {},
+        onEdgeReach: () => {},
+        onMessageClick: () => {},
+        onMessageItemClick: () => {},
+        onMessageLongTouch: () => {},
+        onMessageSystemDateClick: () => {},
+        onPulled: () => {},
+      }}
+    >
+      <Playground />
+    </ChatContext.Provider>
   );
 }
 
