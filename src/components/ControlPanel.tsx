@@ -12,13 +12,14 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
-import { User, Users } from "./types";
+import { User, UserObject, Users } from "./types";
 import { users } from "./Dummies";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
+import useChat from "./context";
 
 const ControlPanel = () => {
   return (
@@ -76,9 +77,10 @@ const Section: FC<{
 };
 
 const UserController: FC<{
-  user: User;
+  user: UserObject;
 }> = ({ user }) => {
-  const { id, name, avatar } = user;
+  const { id, name, avatar, generateMessage } = user;
+  const { addNewMessage } = useChat();
 
   return (
     <Box
@@ -98,7 +100,13 @@ const UserController: FC<{
         />
       </div>
       <ButtonGroup variant="outlined">
-        <IconButton size={"small"} title={"Send Text"}>
+        <IconButton
+          size={"small"}
+          title={"Send Text"}
+          onClick={() => {
+            addNewMessage(generateMessage("text"));
+          }}
+        >
           <TextsmsOutlinedIcon fontSize={"small"} />
         </IconButton>
         <IconButton size={"small"} title={"Send Photo"}>

@@ -1,23 +1,30 @@
-import { fileMessages, imageMessages, textMessages, Image } from "./Dummies";
-import { User } from "./types";
+import { files, images, texts } from "./Dummies";
+import {
+  User,
+  UserNames,
+  File,
+  Image,
+  MessageProps,
+  MessageFileProps,
+  MessageImageProps,
+  MessageTextProps,
+} from "./types";
 
-export const randomizer = (type: "img" | "file" | "text"): number => {
+export const randomizer = (
+  type: "img" | "file" | "text",
+  user: UserNames
+): number => {
   let min = 1,
     max;
-  let ret;
-
   switch (type) {
     case "img":
-      ret = imageMessages;
-      max = imageMessages.length - 1;
+      max = images[user].length - 1;
       break;
     case "text":
-      ret = textMessages;
-      max = textMessages.length - 1;
+      max = texts[user].length - 1;
       break;
     case "file":
-      ret = fileMessages;
-      max = fileMessages.length - 1;
+      max = files[user].length - 1;
       break;
   }
 
@@ -26,14 +33,19 @@ export const randomizer = (type: "img" | "file" | "text"): number => {
   return random;
 };
 
-export const createTextMessage = (content: string, user: User) => {
-  let ret = {
+export const createTextMessage = (
+  content: string,
+  user: User
+): MessageTextProps => {
+  let ret: MessageTextProps = {
     date: new Date(new Date().getTime()),
     edited: false,
     pending: false,
     position: "right",
     status: 2,
     id: uuid4(),
+    text: content,
+    type: "text",
     owner: {
       id: user.id,
       avatar: user.avatar,
@@ -47,14 +59,15 @@ export const createTextMessage = (content: string, user: User) => {
 export const createImageMessage = (
   content: { caption?: string; images: Array<Image> },
   user: User
-) => {
-  let ret = {
+): MessageImageProps => {
+  let ret: MessageImageProps = {
     date: new Date(new Date().getTime()),
     edited: false,
     pending: false,
     position: "right",
     status: 2,
     id: uuid4(),
+    type: "image",
     caption: content.caption,
     images: content.images,
     owner: {
@@ -68,10 +81,10 @@ export const createImageMessage = (
 };
 
 export const createFileMessage = (
-  content: { caption?: string; needTitle?: boolean; files: Array<File> },
+  content: { caption?: string; files: Array<File> },
   user: User
-) => {
-  let ret = {
+): MessageFileProps => {
+  let ret: MessageFileProps = {
     id: uuid4(),
     date: new Date(new Date().getTime()),
     edited: false,
@@ -80,6 +93,7 @@ export const createFileMessage = (
     status: 2,
     caption: content.caption,
     files: content.files,
+    type: "file",
     owner: {
       id: user.id,
       avatar: user.avatar,

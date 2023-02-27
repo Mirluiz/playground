@@ -12,6 +12,7 @@ export const useChat = () => {
 
 export const ChatContext = React.createContext<{
   messages: Array<MessageProps>;
+  addNewMessage: (m: MessageProps) => void;
   loading: boolean;
   onMessageDblClick: () => void;
   onMessageClick: () => void;
@@ -27,6 +28,7 @@ export const ChatContext = React.createContext<{
 }>({
   messages: [],
   loading: false,
+  addNewMessage: (m) => {},
   onMessageDblClick: () => {},
   onMessageClick: () => {},
   onMessageLongTouch: () => {},

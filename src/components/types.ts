@@ -1,6 +1,12 @@
+export type UserNames = "shakespeare" | "me" | "mandelstam" | "alighieri";
 export type User = { [key in "id" | "avatar" | "name"]: string };
+export type UserObject = User & {
+  generateMessage: (
+    type: "text" | "image" | "images" | "files" | "file"
+  ) => MessageProps;
+};
 export type Users = {
-  [key in "shakespeare" | "me" | "brodsky" | "alighieri"]: User;
+  [key in UserNames]: UserObject;
 };
 
 export type File = {
@@ -21,7 +27,6 @@ export interface Image {
 
 export type MessageCoreProps = {
   id: string;
-  title: string;
   avatar?: string;
   position: "left" | "right";
   status: MessageStatus;
@@ -31,7 +36,7 @@ export type MessageCoreProps = {
   dateFormat?: string;
   type: "text" | "file" | "img" | string; // string is stand for "any"
   repliedMessage?: MessageProps;
-  owner: string;
+  owner: User;
 };
 
 export enum MessageStatus {

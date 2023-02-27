@@ -19,9 +19,8 @@ function App() {
       position: "right",
       status: 1,
       text: text,
-      title: users.me.name,
       type: "text",
-      owner: users.me.id,
+      owner: users.me,
     };
 
     messages.push(newMessage);
@@ -33,6 +32,10 @@ function App() {
       value={{
         loading: false,
         messages: messages,
+        addNewMessage: (newMessage: MessageProps) => {
+          messages.push(newMessage);
+          setMessages([...messages]);
+        },
         onTextChange: (text: string) => {
           setComposerText(text);
         },
