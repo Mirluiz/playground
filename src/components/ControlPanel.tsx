@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Checkbox,
   Chip,
   FormControlLabel,
   FormGroup,
@@ -14,12 +15,13 @@ import {
 } from "@mui/material";
 import { User, UserObject, Users } from "./types";
 import { users } from "./Dummies";
+import useChat from "./context";
+import { createImageMessage, randomBetween } from "./helper";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
-import useChat from "./context";
 
 const ControlPanel = () => {
   return (
@@ -47,6 +49,9 @@ const ControlPanel = () => {
             );
           })}
         </Grid>
+      </Section>
+      <Section section={"UI"}>
+        <UI />
       </Section>
     </Box>
   );
@@ -93,7 +98,6 @@ const UserController: FC<{
     >
       <div>
         <Chip
-          size={"small"}
           avatar={<Avatar src={avatar} />}
           label={name}
           variant="outlined"
@@ -109,19 +113,117 @@ const UserController: FC<{
         >
           <TextsmsOutlinedIcon fontSize={"small"} />
         </IconButton>
-        <IconButton size={"small"} title={"Send Photo"}>
+        <IconButton
+          size={"small"}
+          title={"Send Photo"}
+          onClick={() => {
+            createImageMessage(
+              { caption: "text", amount: 1 },
+              user,
+              addNewMessage
+            );
+            // addNewMessage(generateMessage("image"));
+          }}
+        >
           <PhotoOutlinedIcon fontSize={"small"} />
         </IconButton>
-        <IconButton size={"small"} title={"Send Photos"}>
+        <IconButton
+          size={"small"}
+          title={"Send Photos"}
+          onClick={() => {
+            createImageMessage(
+              { caption: "text", amount: randomBetween(10, 2) },
+              user,
+              addNewMessage
+            );
+          }}
+        >
           <CollectionsOutlinedIcon fontSize={"small"} />
         </IconButton>
-        <IconButton size={"small"} title={"Send File"}>
+        <IconButton
+          size={"small"}
+          title={"Send File"}
+          onClick={() => {
+            addNewMessage(generateMessage("file"));
+          }}
+        >
           <InsertDriveFileOutlinedIcon fontSize={"small"} />
         </IconButton>
-        <IconButton size={"small"} title={"Send Files"}>
+        <IconButton
+          size={"small"}
+          title={"Send Files"}
+          onClick={() => {
+            addNewMessage(generateMessage("files"));
+          }}
+        >
           <ContentCopyOutlinedIcon fontSize={"small"} />
         </IconButton>
       </ButtonGroup>
+    </Box>
+  );
+};
+
+const UI = () => {
+  const {
+    updateAvatar,
+    updateTitle,
+    updateDays,
+    updateLoading,
+    avatar,
+    title,
+    days,
+    loading,
+  } = useChat();
+  return (
+    <Box sx={{ display: "flex" }}>
+      <FormGroup>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={avatar}
+              onClick={(e) => {
+                updateAvatar();
+              }}
+            />
+          }
+          label="Avatar"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={title}
+              onClick={(e) => {
+                updateTitle();
+              }}
+            />
+          }
+          label="Title"
+        />
+      </FormGroup>
+      <FormGroup>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={loading}
+              onClick={(e) => {
+                updateLoading();
+              }}
+            />
+          }
+          label="Loading"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={days}
+              onClick={(e) => {
+                updateDays();
+              }}
+            />
+          }
+          label="Days"
+        />
+      </FormGroup>
     </Box>
   );
 };

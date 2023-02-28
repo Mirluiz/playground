@@ -11,9 +11,18 @@ export const useChat = () => {
 };
 
 export const ChatContext = React.createContext<{
+  avatar: boolean;
+  title: boolean;
+  days: boolean;
   messages: Array<MessageProps>;
   addNewMessage: (m: MessageProps) => void;
   loading: boolean;
+
+  updateDays: () => void;
+  updateLoading: () => void;
+  updateAvatar: () => void;
+  updateTitle: () => void;
+
   onMessageDblClick: () => void;
   onMessageClick: () => void;
   onMessageLongTouch: () => void;
@@ -21,14 +30,21 @@ export const ChatContext = React.createContext<{
   onSendClick: () => void;
   onPulled: () => void;
   onComposerReplyCancel: () => void;
-  composerReplyMessage: () => void;
+  composerReplyMessage?: MessageProps;
   onMessageItemClick: () => void;
   onEdgeReach: () => void;
   onMessageSystemDateClick: () => void;
 }>({
+  avatar: true,
+  days: true,
+  title: false,
   messages: [],
   loading: false,
   addNewMessage: (m) => {},
+  updateAvatar: () => {},
+  updateTitle: () => {},
+  updateLoading: () => {},
+  updateDays: () => {},
   onMessageDblClick: () => {},
   onMessageClick: () => {},
   onMessageLongTouch: () => {},
@@ -36,10 +52,10 @@ export const ChatContext = React.createContext<{
   onSendClick: () => {},
   onPulled: () => {},
   onComposerReplyCancel: () => {},
-  composerReplyMessage: () => {},
   onMessageItemClick: () => {},
   onEdgeReach: () => {},
   onMessageSystemDateClick: () => {},
+  composerReplyMessage: undefined,
 });
 
 export default useChat;
