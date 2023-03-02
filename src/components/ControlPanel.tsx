@@ -10,6 +10,7 @@ import {
   FormGroup,
   Grid,
   IconButton,
+  Stack,
   Switch,
   Typography,
 } from "@mui/material";
@@ -22,8 +23,25 @@ import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
+import ManageSearchOutlinedIcon from "@mui/icons-material/ManageSearchOutlined";
+import HighlightOutlinedIcon from "@mui/icons-material/HighlightOutlined";
+import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 
 const ControlPanel = () => {
+  const {
+    generateFake,
+    clearChat,
+    scrollTo,
+    highlight,
+    reply,
+    mode,
+    updateMode,
+    themeMode,
+    updateThemeMode,
+  } = useChat();
+
   return (
     <Box
       sx={{
@@ -33,14 +51,41 @@ const ControlPanel = () => {
         padding: 1,
       }}
     >
-      <Section section={"Palette"}>
+      <Section section={"Modes"}>
         <FormGroup>
-          <FormControlLabel control={<Switch defaultChecked />} label="Mode" />
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Typography>Dark</Typography>
+            <Switch
+              color="default"
+              checked={themeMode === "light"}
+              onClick={() => {
+                updateThemeMode();
+              }}
+            />
+            <Typography>Light</Typography>
+          </Stack>
+
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Typography>Web</Typography>
+            <Switch
+              color="default"
+              checked={mode === "mobile"}
+              onClick={() => {
+                updateMode(mode === "mobile" ? "web" : "mobile");
+              }}
+            />
+            <Typography>Mobile</Typography>
+          </Stack>
         </FormGroup>
       </Section>
 
-      <Section section={"User's actions"}>
-        <Grid container>
+      <Section section={"Start Messaging"}>
+        <Grid
+          container
+          sx={{
+            marginTop: 1,
+          }}
+        >
           {Object.keys(users).map((user) => {
             return (
               <Grid item md={6}>
@@ -52,6 +97,91 @@ const ControlPanel = () => {
       </Section>
       <Section section={"UI"}>
         <UI />
+      </Section>
+      <Section section={"Content Actions"}>
+        <Stack direction={"row"} spacing={1}>
+          <ButtonGroup
+            variant="outlined"
+            aria-label="outlined button group"
+            size={"small"}
+          >
+            <Button
+              startIcon={<DeleteIcon />}
+              color="error"
+              onClick={() => {
+                clearChat();
+              }}
+            >
+              Clear
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup
+            variant="outlined"
+            aria-label="outlined button group"
+            size={"small"}
+          >
+            <Button
+              startIcon={<ShuffleOutlinedIcon />}
+              color="primary"
+              onClick={() => {
+                generateFake(15);
+              }}
+            >
+              15
+            </Button>
+            <Button
+              startIcon={<ShuffleOutlinedIcon />}
+              color="primary"
+              onClick={() => {
+                generateFake(150);
+              }}
+            >
+              150
+            </Button>
+            <Button
+              startIcon={<ShuffleOutlinedIcon />}
+              color="primary"
+              onClick={() => {
+                generateFake(1500);
+              }}
+            >
+              1500
+            </Button>
+          </ButtonGroup>
+        </Stack>
+      </Section>
+      <Section section={"Interactions"}>
+        <ButtonGroup variant="outlined" aria-label="outlined button group">
+          <Button
+            startIcon={<ManageSearchOutlinedIcon />}
+            onClick={() => {
+              let index = prompt("Pick index");
+              if (index) scrollTo(+index);
+            }}
+          >
+            Scroll to
+          </Button>
+          <Button
+            startIcon={<HighlightOutlinedIcon />}
+            color="primary"
+            onClick={() => {
+              let index = prompt("Pick index");
+              if (index) highlight(+index);
+            }}
+          >
+            Highlight
+          </Button>
+          <Button
+            startIcon={<ReplyOutlinedIcon />}
+            color="primary"
+            onClick={() => {
+              let index = prompt("Pick index");
+              if (index) reply(+index);
+            }}
+          >
+            Reply
+          </Button>
+        </ButtonGroup>
       </Section>
     </Box>
   );
@@ -71,7 +201,7 @@ const Section: FC<{
       <Typography
         sx={{
           marginLeft: 0.4,
-          marginBottom: 1,
+          // marginBottom: 1,
         }}
       >
         {section}

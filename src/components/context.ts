@@ -11,6 +11,11 @@ export const useChat = () => {
 };
 
 export const ChatContext = React.createContext<{
+  themeMode: "dark" | "light";
+  updateThemeMode: () => void;
+  mode: "mobile" | "web";
+  updateMode: (m: "mobile" | "web") => void;
+
   avatar: boolean;
   title: boolean;
   days: boolean;
@@ -23,6 +28,8 @@ export const ChatContext = React.createContext<{
   updateAvatar: () => void;
   updateTitle: () => void;
 
+  clearChat: () => void;
+
   onMessageDblClick: () => void;
   onMessageClick: () => void;
   onMessageLongTouch: () => void;
@@ -31,10 +38,21 @@ export const ChatContext = React.createContext<{
   onPulled: () => void;
   onComposerReplyCancel: () => void;
   composerReplyMessage?: MessageProps;
+
   onMessageItemClick: () => void;
   onEdgeReach: () => void;
   onMessageSystemDateClick: () => void;
+
+  generateFake: (amount: number) => void;
+
+  reply: (id: number) => void;
+  scrollTo: (i: number) => void;
+  highlight: (i: number) => void;
 }>({
+  themeMode: "light",
+  updateThemeMode: () => {},
+  mode: "mobile",
+  updateMode: () => {},
   avatar: true,
   days: true,
   title: false,
@@ -45,6 +63,7 @@ export const ChatContext = React.createContext<{
   updateTitle: () => {},
   updateLoading: () => {},
   updateDays: () => {},
+  clearChat: () => {},
   onMessageDblClick: () => {},
   onMessageClick: () => {},
   onMessageLongTouch: () => {},
@@ -56,6 +75,10 @@ export const ChatContext = React.createContext<{
   onEdgeReach: () => {},
   onMessageSystemDateClick: () => {},
   composerReplyMessage: undefined,
+  generateFake: () => {},
+  reply: () => {},
+  scrollTo: () => {},
+  highlight: () => {},
 });
 
 export default useChat;
