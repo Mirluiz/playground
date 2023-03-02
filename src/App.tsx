@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Playground from "./components/Playground";
+import Playground from "./components/ControlPanel";
 
 function App() {
 	return (
 		<div>
-			ASDASD
 			<Playground />
 		</div>
 	);
