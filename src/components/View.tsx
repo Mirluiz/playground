@@ -124,6 +124,9 @@ const View = () => {
 										palette: {
 											background: "#95c48a",
 											paper: "#fff",
+											onPaper: "black",
+											onPaperSecondary: "rgba(112,117,121,0.8)",
+											accent: "#e17076",
 											left: "#ffffff",
 											leftTitle: "#e17076",
 											onLeft: "#000000",
@@ -136,16 +139,19 @@ const View = () => {
 								  }
 								: {
 										palette: {
-											background: "#95c48a",
-											paper: "#fff",
-											left: "#ffffff",
-											leftTitle: "#e17076",
-											onLeft: "#000000",
-											onLeftSecondary: "#95c48a",
-											right: "#eeffde",
-											rightTitle: "#6ec9cb",
-											onRight: "#000000",
-											onRightSecondary: "#4fae4e",
+											background: "#0f0f10",
+											paper: "#282828",
+											onPaper: "white",
+											accent: "#766AC8FF",
+											onPaperSecondary: "rgb(170,170,170)",
+											left: "#212121",
+											leftTitle: "#766AC8FF",
+											onLeft: "white",
+											onLeftSecondary: "rgb(170,170,170)",
+											right: "#766AC8FF",
+											rightTitle: "white",
+											onRight: "whitesmoke",
+											onRightSecondary: "whitesmoke",
 										},
 								  }
 						}
