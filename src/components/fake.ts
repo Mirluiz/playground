@@ -43,7 +43,7 @@ export const generateFake = (q: number): Array<MessageProps> => {
   let _i = 0;
 
   while (_i < q) {
-    let isImage = byChance(10);
+    let isImage = byChance(50);
     let isLeft = byChance(50);
 
     ret.push({
@@ -70,6 +70,170 @@ export const generateFake = (q: number): Array<MessageProps> => {
     });
     _i++;
   }
+
+  // ret.push({
+  //   date: new Date(),
+  //   edited: false,
+  //   files: undefined,
+  //   pending: false,
+  //   status: 2,
+  //   text: "esse ",
+  //   owner: users.me,
+  //   type: "text",
+  //   id: _i.toString(),
+  // });
+  // ret.push({
+  //   date: new Date(),
+  //   edited: false,
+  //   files: undefined,
+  //   pending: false,
+  //   status: 2,
+  //   text: "esse quam nihil molestiae 122 123123",
+  //   owner: users.me,
+  //   type: "text",
+  //   id: _i.toString(),
+  // });
+  // ret.push({
+  //   date: new Date(),
+  //   edited: false,
+  //   files: undefined,
+  //   pending: false,
+  //   status: 2,
+  //   text: "nostrud exercitation ullamco laboris",
+  //   owner: users.me,
+  //   type: "text",
+  //   id: _i.toString(),
+  // });
+  // ret.push({
+  //   date: new Date(),
+  //   edited: false,
+  //   files: undefined,
+  //   pending: false,
+  //   status: 2,
+  //   text: "Lorem ipsum dolor",
+  //   owner: users.me,
+  //   type: "text",
+  //   id: _i.toString(),
+  // });
+  // ret.push({
+  //   date: new Date(),
+  //   edited: false,
+  //   files: undefined,
+  //   pending: false,
+  //   status: 1,
+  //   text: "Ut enim ad minim veniam, quis",
+  //   owner: users.me,
+  //   type: "text",
+  //   id: _i.toString(),
+  // });
+  //
+  ret.push({
+    date: new Date(),
+    edited: false,
+    files: undefined,
+    pending: false,
+    status: 1,
+    text: generateFakeText(30, 20),
+    owner: users.me,
+    type: "text",
+    id: _i.toString(),
+  });
+  //
+  ret.push({
+    date: new Date(),
+    edited: false,
+    files: [
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+    ],
+    pending: false,
+    status: 2,
+    text: generateFakeText(10, 1),
+    owner: users.me,
+    type: "file",
+    id: _i.toString(),
+  });
+
+  ret.push({
+    date: new Date(),
+    edited: false,
+    files: [
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+    ],
+    pending: false,
+    status: 2,
+    text: generateFakeText(10, 1),
+    owner: users.me,
+    type: "file",
+    id: _i.toString(),
+  });
+
+  ret.push({
+    caption: generateFakeText(30, 20),
+    date: new Date(),
+    edited: false,
+    files: [
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+      {
+        id: _i + "image",
+        title: "image" + _i,
+        url: generateFakeImage(),
+        type: "img",
+        secondary: "2 mb",
+      },
+    ],
+    pending: false,
+    status: 2,
+    text: generateFakeText(10, 1),
+    owner: users.me,
+    type: "file",
+    id: _i.toString(),
+  });
 
   return ret;
 };

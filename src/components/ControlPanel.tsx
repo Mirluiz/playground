@@ -47,7 +47,6 @@ const ControlPanel = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 1,
         padding: 1,
       }}
     >
@@ -223,7 +222,6 @@ const UserController: FC<{
         marginBottom: 2,
         display: "flex",
         flexDirection: "column",
-        gap: 0.5,
       }}
     >
       <div>
