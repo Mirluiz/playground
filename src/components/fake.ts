@@ -241,4 +241,16 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
     type: "text",
     repliedMessage: messages[messages.length - 1],
   });
+
+  messages.push({
+    id: uuid4(),
+    date: getDay(-1),
+    edited: false,
+    pending: true,
+    status: 0,
+    text: generateFakeText(30, 10),
+    owner: users.me,
+    type: "text",
+    repliedMessage: messages[messages.length - 1],
+  });
 };

@@ -24,6 +24,7 @@ const View = () => {
 		mode,
 		themeMode,
 		days,
+		onMessageContext,
 	} = useChat();
 
 	return (
@@ -72,7 +73,7 @@ const View = () => {
 													onComposer: "#707579cc",
 													accent: "#3390ecff",
 													onAccent: "#fff",
-													contrast: "#45af544d",
+													contrast: "#45af5424",
 													onContrast: "#fff",
 													text: "#000",
 													reply: "#3390ecff",
@@ -125,6 +126,7 @@ const View = () => {
 								) => {
 									console.log("reply checked", replyMessageId, messageId);
 								}}
+								onMessageContext={onMessageContext}
 							/>
 						</div>
 					</div>

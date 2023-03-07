@@ -30,18 +30,20 @@ export const ChatContext = React.createContext<{
 
   clearChat: () => void;
 
-  onMessageDblClick: (id: string) => void;
-  onMessageClick: () => void;
-  onMessageLongTouch: () => void;
+  onMessageSystemDateClick?: (date: Date) => void;
+  onMessageClick?: (id: string) => void;
+  onMessageDblClick?: (id: string) => void;
+  onMessageItemClick?: (message: string, id: string | false) => void;
+  onMessageLongTouch?: (id: string) => void;
+  onPulled?: (id: string) => void;
+  onMessageContext?: (id: string, messageItself?: boolean) => void;
+  onReplyMessageClick?: (messageId: string, parentId?: string) => void;
+  onEdgeReach?: () => void;
+
   onTextChange: (text: string) => void;
   onSendClick: () => void;
-  onPulled: () => void;
   onComposerReplyCancel: () => void;
   composerReplyMessage?: MessageProps;
-
-  onMessageItemClick: () => void;
-  onEdgeReach: () => void;
-  onMessageSystemDateClick: () => void;
 
   generateFake: (amount: number) => void;
 

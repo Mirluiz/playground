@@ -21,6 +21,8 @@ const Playground = () => {
 	const [mode, setMode] = useState<"mobile" | "web">("mobile");
 	const [themeMode, setThemeMode] = useState<"dark" | "light">("light");
 
+	// const { scrollTo, highlightMessage } = useChatApi();
+
 	useEffect(() => {
 		setMessages(generateFake(0));
 	}, []);
@@ -77,19 +79,36 @@ const Playground = () => {
 					setComposerText(text);
 				},
 				onMessageDblClick: (id: string) => {
-					let msg = messages.find((m) => m.id === id);
-					if (msg) setComposerReplyMessage(msg);
+					console.log("onMessageDblClick", id);
+					// let msg = messages.find((m) => m.id === id);
+					// if (msg) setComposerReplyMessage(msg);
 				},
 				onSendClick: () => {
 					addMessage(composerText);
 					setComposerText("");
 				},
 				onEdgeReach: () => {},
-				onMessageClick: () => {},
-				onMessageItemClick: () => {},
-				onMessageLongTouch: () => {},
-				onMessageSystemDateClick: () => {},
-				onPulled: () => {},
+				onMessageClick: (id) => {
+					console.log("onMessageClick", id);
+				},
+				onMessageItemClick: (item, id) => {
+					console.log("onMessageItemClick", item, id);
+				},
+				onMessageLongTouch: (id) => {
+					console.log("onMessageLongTouch", id);
+				},
+				onMessageSystemDateClick: (date) => {
+					console.log("onMessageSystemDateClick", date);
+				},
+				onPulled: (id) => {
+					console.log("onPulled", id);
+				},
+				onMessageContext: (id) => {
+					console.log("onMessageContext", id);
+				},
+				onReplyMessageClick: (messageId, parentId) => {
+					console.log("onReplyMessageClick", messageId, parentId);
+				},
 				clearChat: () => {
 					setMessages([]);
 				},
@@ -99,10 +118,11 @@ const Playground = () => {
 				},
 				scrollTo: (index) => {
 					// scrollTo(messages[index].id);
-					alert("coming soon");
+					// coming soon
 				},
 				highlight: (index) => {
-					alert("coming soon");
+					// highlightMessage(messages[index].id);
+					// coming soon
 				},
 				reply: (index) => {
 					let msg = messages[index];
