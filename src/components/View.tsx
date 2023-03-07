@@ -23,6 +23,7 @@ const View = () => {
 		onSendClick,
 		mode,
 		themeMode,
+		days,
 	} = useChat();
 
 	return (
@@ -59,38 +60,49 @@ const View = () => {
 										? {
 												palette: {
 													background: "#95c48a",
-													paper: "#fff",
-													onPaper: "black",
-													onPaperSecondary: "rgba(112,117,121,0.8)",
-													accent: "#e17076",
 													left: "#ffffff",
 													leftTitle: "#e17076",
 													onLeft: "#000000",
-													onLeftSecondary: "rgba(104, 108, 114)",
+													onLeftSecondary: "#686c72ff",
 													right: "#eeffde",
 													rightTitle: "#6ec9cb",
 													onRight: "#000000",
-													onRightSecondary: "#4fae4e",
+													onRightSecondary: "#45Af54ff",
+													composer: "#fff",
+													onComposer: "#707579cc",
+													accent: "#3390ecff",
+													onAccent: "#fff",
+													contrast: "#45af544d",
+													onContrast: "#fff",
+													text: "#000",
+													reply: "#3390ecff",
+													onReply: "#fff",
 												},
 										  }
 										: {
 												palette: {
 													background: "#0f0f10",
-													paper: "#282828",
-													onPaper: "white",
-													accent: "#766AC8FF",
-													onPaperSecondary: "rgb(170,170,170)",
 													left: "#212121",
-													leftTitle: "#766AC8FF",
-													onLeft: "white",
-													onLeftSecondary: "rgb(170,170,170)",
-													right: "#766AC8FF",
-													rightTitle: "white",
-													onRight: "whitesmoke",
-													onRightSecondary: "whitesmoke",
+													leftTitle: "#766ac8ff",
+													onLeft: "#fff",
+													onLeftSecondary: "#aaaaaaff",
+													right: "#766ac8ff",
+													rightTitle: "#fff",
+													onRight: "#eeeeee",
+													onRightSecondary: "#ffe",
+													composer: "#212121ff",
+													onComposer: "#aaaaaacc",
+													onAccent: "#212121",
+													accent: "#766ac8ff",
+													contrast: "#0000004c",
+													onContrast: "#ffe",
+													text: "#fff",
+													reply: "#fff",
+													onReply: "#3390ecff",
 												},
 										  }
 								}
+								days={days}
 								title={title}
 								avatar={avatar}
 								messages={messages}
@@ -107,6 +119,12 @@ const View = () => {
 								onEdgeReach={onEdgeReach}
 								onMessageSystemDateClick={onMessageSystemDateClick}
 								composerReplyMessage={composerReplyMessage}
+								onReplyMessageClick={(
+									replyMessageId: string,
+									messageId: string
+								) => {
+									console.log("reply checked", replyMessageId, messageId);
+								}}
 							/>
 						</div>
 					</div>
@@ -123,7 +141,6 @@ const View = () => {
 								? {
 										palette: {
 											background: "#95c48a",
-											paper: "#fff",
 											left: "#ffffff",
 											leftTitle: "#e17076",
 											onLeft: "#000000",
@@ -131,13 +148,12 @@ const View = () => {
 											right: "#eeffde",
 											rightTitle: "#6ec9cb",
 											onRight: "#000000",
-											onRightSecondary: "#4fae4e",
+											onRightSecondary: "rgb(69,175,84)",
 										},
 								  }
 								: {
 										palette: {
 											background: "#95c48a",
-											paper: "#fff",
 											left: "#ffffff",
 											leftTitle: "#e17076",
 											onLeft: "#000000",
@@ -145,10 +161,11 @@ const View = () => {
 											right: "#eeffde",
 											rightTitle: "#6ec9cb",
 											onRight: "#000000",
-											onRightSecondary: "#4fae4e",
+											onRightSecondary: "rgb(69,175,84)",
 										},
 								  }
 						}
+						days={days}
 						title={title}
 						avatar={avatar}
 						messages={messages}

@@ -30,7 +30,7 @@ export const ChatContext = React.createContext<{
 
   clearChat: () => void;
 
-  onMessageDblClick: () => void;
+  onMessageDblClick: (id: string) => void;
   onMessageClick: () => void;
   onMessageLongTouch: () => void;
   onTextChange: (text: string) => void;

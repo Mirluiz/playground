@@ -21,10 +21,8 @@ const Playground = () => {
 	const [mode, setMode] = useState<"mobile" | "web">("mobile");
 	const [themeMode, setThemeMode] = useState<"dark" | "light">("light");
 
-	// const { scrollTo, highlightMessage } = useChatApi();
-
 	useEffect(() => {
-		setMessages(generateFake(1));
+		setMessages(generateFake(0));
 	}, []);
 
 	const addMessage = (text: string) => {
@@ -78,7 +76,10 @@ const Playground = () => {
 				onTextChange: (text: string) => {
 					setComposerText(text);
 				},
-				onMessageDblClick: () => {},
+				onMessageDblClick: (id: string) => {
+					let msg = messages.find((m) => m.id === id);
+					if (msg) setComposerReplyMessage(msg);
+				},
 				onSendClick: () => {
 					addMessage(composerText);
 					setComposerText("");
@@ -97,12 +98,11 @@ const Playground = () => {
 					setMessages(generateFake(amount));
 				},
 				scrollTo: (index) => {
-					alert("Coming soon");
 					// scrollTo(messages[index].id);
+					alert("coming soon");
 				},
 				highlight: (index) => {
-					alert("Coming soon");
-					// highlightMessage(messages[index].id);
+					alert("coming soon");
 				},
 				reply: (index) => {
 					let msg = messages[index];
