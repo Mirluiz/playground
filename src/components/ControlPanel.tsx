@@ -10,6 +10,7 @@ import {
   FormGroup,
   Grid,
   IconButton,
+  Link,
   Stack,
   Switch,
   Typography,
@@ -28,6 +29,7 @@ import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
 import ManageSearchOutlinedIcon from "@mui/icons-material/ManageSearchOutlined";
 import HighlightOutlinedIcon from "@mui/icons-material/HighlightOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const ControlPanel = () => {
   const {
@@ -182,6 +184,25 @@ const ControlPanel = () => {
           </Button>
         </ButtonGroup>
       </Section>
+      <Box>
+        <Link
+          sx={{
+            display: "flex",
+            marginTop: 1,
+          }}
+          underline={"none"}
+          href={"https://github.com/Mirluiz/playground"}
+        >
+          <Typography
+            sx={{
+              marginRight: 1,
+            }}
+          >
+            Playground source code
+          </Typography>
+          <GitHubIcon />
+        </Link>{" "}
+      </Box>
     </Box>
   );
 };
