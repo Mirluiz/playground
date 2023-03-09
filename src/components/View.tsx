@@ -206,8 +206,21 @@ const View = () => {
 						onEdgeReach={onEdgeReach}
 						onMessageSystemDateClick={onMessageSystemDateClick}
 						composerReplyMessage={composerReplyMessage}
-						renderAny={(m: { id: string }, o) => {
-							return <></>;
+						renderAny={(m: any, order: any) => {
+							//put any temp solution
+							return (
+								<Paper
+									sx={{
+										width: 150,
+										height: 50,
+										display: "flex",
+										justifyContent: "center",
+										alignItems: "center",
+										textAlign: "center",
+									}}>
+									Customizable message
+								</Paper>
+							);
 						}}
 					/>
 				</Box>
