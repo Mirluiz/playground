@@ -1,13 +1,12 @@
 import { files, texts } from "./Dummies";
+import { User, UserNames } from "./types";
 import {
-  User,
-  UserNames,
   File,
   MessageProps,
   MessageFileProps,
   MessageImageProps,
   MessageTextProps,
-} from "./types";
+} from "reactchatt";
 
 export const randomizer = (type: "file" | "text", user: UserNames): number => {
   let min = 0,

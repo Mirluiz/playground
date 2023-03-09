@@ -1,4 +1,4 @@
-import { MessageProps } from "./types";
+import { MessageProps } from "reactchatt";
 import { users } from "./Dummies";
 import { uuid4 } from "./helper";
 const generateFakeImage = (): string => {

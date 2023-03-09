@@ -4,7 +4,7 @@ import {
   MessageImageProps,
   MessageProps,
   MessageTextProps,
-} from "./types";
+} from "reactchatt";
 
 export const useChat = () => {
   return useContext(ChatContext);
@@ -20,7 +20,7 @@ export const ChatContext = React.createContext<{
   title: boolean;
   days: boolean;
   typing: boolean;
-  messages: Array<MessageProps>;
+  messages?: Array<MessageProps>;
   addNewMessage: (m: MessageProps) => void;
   loading: boolean;
 
