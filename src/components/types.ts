@@ -32,21 +32,19 @@ export type MessageCoreProps = {
 	id: string;
 	avatar?: string;
 	status: MessageStatus;
-	pending?: boolean;
-	edited?: boolean;
 	date: Date;
 	dateFormat?: string;
-	type: "text" | "file" | "img" | string; // string is stand for "any"
+	type: "text" | "file" | "img" | "any";
 	repliedMessage?: MessageProps;
 	owner: User;
-	// getPosition: () => "right" | "left";
 };
 
 export enum MessageStatus {
 	created,
+	pending,
 	sent,
-	delivered,
 	read,
+	error,
 }
 
 export type MessageProps =

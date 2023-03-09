@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import { ReactChat } from "reactchatt";
 import useChat from "./context";
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import "./view.css";
+import { users } from "./Dummies";
 
 const View = () => {
 	const {
@@ -25,6 +26,7 @@ const View = () => {
 		themeMode,
 		days,
 		onMessageContext,
+		typing,
 	} = useChat();
 
 	return (
@@ -61,6 +63,7 @@ const View = () => {
 										? {
 												palette: {
 													background: "#95c48a",
+													onBackground: "#f4f4f5",
 													left: "#ffffff",
 													leftTitle: "#e17076",
 													onLeft: "#000000",
@@ -83,6 +86,7 @@ const View = () => {
 										: {
 												palette: {
 													background: "#0f0f10",
+													onBackground: "#aaaaaaff",
 													left: "#212121",
 													leftTitle: "#766ac8ff",
 													onLeft: "#fff",
@@ -103,6 +107,8 @@ const View = () => {
 												},
 										  }
 								}
+								typing={typing}
+								typingInfo={users.shakespeare.name}
 								days={days}
 								title={title}
 								avatar={avatar}
@@ -127,6 +133,22 @@ const View = () => {
 									console.log("reply checked", replyMessageId, messageId);
 								}}
 								onMessageContext={onMessageContext}
+								renderAny={(m: any, order: any) => {
+									//put any temp solution
+									return (
+										<Paper
+											sx={{
+												width: 150,
+												height: 50,
+												display: "flex",
+												justifyContent: "center",
+												alignItems: "center",
+												textAlign: "center",
+											}}>
+											Customizable message
+										</Paper>
+									);
+								}}
 							/>
 						</div>
 					</div>
@@ -184,6 +206,9 @@ const View = () => {
 						onEdgeReach={onEdgeReach}
 						onMessageSystemDateClick={onMessageSystemDateClick}
 						composerReplyMessage={composerReplyMessage}
+						renderAny={(m: { id: string }, o) => {
+							return <></>;
+						}}
 					/>
 				</Box>
 			)}

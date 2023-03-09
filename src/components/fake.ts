@@ -50,7 +50,6 @@ export const generateFake = (q: number): Array<MessageProps> => {
 
     messages.push({
       date: getDay(-2),
-      edited: false,
       files: undefined,
       images: isImage
         ? [
@@ -63,7 +62,6 @@ export const generateFake = (q: number): Array<MessageProps> => {
             },
           ]
         : undefined,
-      pending: false,
       status: 2,
       text: generateFakeText(10, 1),
       owner: isLeft ? users.brodsky : users.me,
@@ -92,8 +90,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
-    pending: false,
     owner: users.me,
     type: "img",
     images: [
@@ -112,8 +108,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
-    pending: false,
     images: [
       {
         id: uuid4(),
@@ -146,9 +140,7 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
     files: undefined,
-    pending: false,
     status: 2,
     text: "esse ",
     owner: users.me,
@@ -160,7 +152,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
     files: [
       {
         id: uuid4(),
@@ -170,7 +161,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
         secondary: "2MB",
       },
     ],
-    pending: false,
     status: 2,
     owner: users.me,
     type: "text",
@@ -180,7 +170,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
     files: [
       {
         id: uuid4(),
@@ -197,7 +186,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
         secondary: "2MB",
       },
     ],
-    pending: false,
     status: 2,
     owner: users.me,
     type: "file",
@@ -206,9 +194,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
-    files: undefined,
-    pending: false,
     status: 2,
     text: generateFakeText(10, 5),
     owner: users.me,
@@ -220,9 +205,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
-    files: undefined,
-    pending: false,
     status: 2,
     text: generateFakeText(30, 10),
     owner: users.me,
@@ -233,8 +215,6 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: true,
-    pending: false,
     status: 2,
     text: generateFakeText(30, 10),
     owner: users.me,
@@ -242,15 +222,58 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
     repliedMessage: messages[messages.length - 1],
   });
 
+  //statuses
   messages.push({
     id: uuid4(),
     date: getDay(-1),
-    edited: false,
-    pending: true,
     status: 0,
-    text: generateFakeText(30, 10),
+    text: "Status 0",
     owner: users.me,
     type: "text",
-    repliedMessage: messages[messages.length - 1],
+  });
+
+  messages.push({
+    id: uuid4(),
+    date: getDay(-1),
+    status: 1,
+    text: "Status 1",
+    owner: users.me,
+    type: "text",
+  });
+
+  messages.push({
+    id: uuid4(),
+    date: getDay(-1),
+    status: 2,
+    text: "Status 2",
+    owner: users.me,
+    type: "text",
+  });
+
+  messages.push({
+    id: uuid4(),
+    date: getDay(-1),
+    status: 3,
+    text: "Status 3",
+    owner: users.me,
+    type: "text",
+  });
+
+  messages.push({
+    id: uuid4(),
+    date: getDay(-1),
+    status: 4,
+    text: "Status 4",
+    owner: users.me,
+    type: "text",
+  });
+
+  messages.push({
+    id: uuid4(),
+    date: getDay(-1),
+    status: 0,
+    text: "Any",
+    owner: users.me,
+    type: "any",
   });
 };

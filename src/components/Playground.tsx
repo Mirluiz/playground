@@ -19,9 +19,8 @@ const Playground = () => {
 	const [composerReplyMessage, setComposerReplyMessage] =
 		useState<MessageProps>();
 	const [mode, setMode] = useState<"mobile" | "web">("mobile");
+	const [typing, setTyping] = useState<boolean>(false);
 	const [themeMode, setThemeMode] = useState<"dark" | "light">("light");
-
-	// const { scrollTo, highlightMessage } = useChatApi();
 
 	useEffect(() => {
 		setMessages(generateFake(0));
@@ -30,10 +29,8 @@ const Playground = () => {
 	const addMessage = (text: string) => {
 		let newMessage: MessageProps = {
 			date: new Date(),
-			edited: false,
 			id: uuid4(),
-			pending: false,
-			status: 1,
+			status: 2,
 			text: text,
 			type: "text",
 			owner: users.me,
@@ -46,6 +43,7 @@ const Playground = () => {
 	return (
 		<ChatContext.Provider
 			value={{
+				typing: typing,
 				mode: mode,
 				themeMode: themeMode,
 				updateThemeMode: () => {
@@ -53,6 +51,9 @@ const Playground = () => {
 				},
 				updateMode: (m) => {
 					setMode(m);
+				},
+				updateTyping: () => {
+					setTyping(!typing);
 				},
 				loading: loading,
 				days: days,
@@ -117,12 +118,12 @@ const Playground = () => {
 					setMessages(generateFake(amount));
 				},
 				scrollTo: (index) => {
+					alert("coming soon");
 					// scrollTo(messages[index].id);
-					// coming soon
 				},
 				highlight: (index) => {
+					alert("coming soon");
 					// highlightMessage(messages[index].id);
-					// coming soon
 				},
 				reply: (index) => {
 					let msg = messages[index];

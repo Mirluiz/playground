@@ -55,9 +55,7 @@ export const createTextMessage = (
 ): MessageTextProps => {
   let ret: MessageTextProps = {
     date: new Date(new Date().getTime()),
-    edited: false,
-    pending: false,
-    status: 2,
+    status: 0,
     id: uuid4(),
     text: content,
     type: "text",
@@ -79,9 +77,7 @@ export const createImageMessage = (
   let imgs = [];
   let newMessage: MessageImageProps = {
     date: new Date(),
-    edited: false,
     id: uuid4(),
-    pending: false,
     status: 1,
     type: "img",
     owner: user,
@@ -144,9 +140,7 @@ export const createFileMessage = (
   let ret: MessageFileProps = {
     id: uuid4(),
     date: new Date(new Date().getTime()),
-    edited: false,
-    pending: false,
-    status: 2,
+    status: 1,
     caption: content.caption,
     files: content.files,
     type: "file",

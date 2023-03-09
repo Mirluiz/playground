@@ -322,6 +322,8 @@ const UI = () => {
     title,
     days,
     loading,
+    typing,
+    updateTyping,
   } = useChat();
   return (
     <Box sx={{ display: "flex" }}>
@@ -347,6 +349,17 @@ const UI = () => {
             />
           }
           label="Title"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={typing}
+              onClick={(e) => {
+                updateTyping();
+              }}
+            />
+          }
+          label="Typing"
         />
       </FormGroup>
       <FormGroup>

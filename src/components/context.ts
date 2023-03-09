@@ -19,6 +19,7 @@ export const ChatContext = React.createContext<{
   avatar: boolean;
   title: boolean;
   days: boolean;
+  typing: boolean;
   messages: Array<MessageProps>;
   addNewMessage: (m: MessageProps) => void;
   loading: boolean;
@@ -27,6 +28,7 @@ export const ChatContext = React.createContext<{
   updateLoading: () => void;
   updateAvatar: () => void;
   updateTitle: () => void;
+  updateTyping: () => void;
 
   clearChat: () => void;
 
@@ -57,6 +59,7 @@ export const ChatContext = React.createContext<{
   updateMode: () => {},
   avatar: true,
   days: true,
+  typing: false,
   title: false,
   messages: [],
   loading: false,
@@ -65,6 +68,7 @@ export const ChatContext = React.createContext<{
   updateTitle: () => {},
   updateLoading: () => {},
   updateDays: () => {},
+  updateTyping: () => {},
   clearChat: () => {},
   onMessageDblClick: () => {},
   onMessageClick: () => {},
