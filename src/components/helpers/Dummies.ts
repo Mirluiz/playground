@@ -8,7 +8,8 @@ import {
   uuid4,
 } from "./helper";
 
-import { Users, File, UserNames, MessageProps } from "../types";
+import { Users, UserNames } from "../types";
+import { MessageProps, File } from "reactchatt";
 
 export const users: Users = {
   me: {
