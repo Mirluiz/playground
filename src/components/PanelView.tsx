@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import {
   Avatar,
   Box,
@@ -16,9 +16,9 @@ import {
   Typography,
 } from "@mui/material";
 import { User, UserObject, Users } from "./types";
-import { users } from "./Dummies";
-import useChat from "./context";
-import { createImageMessage, randomBetween } from "./helper";
+import { users } from "./helpers/Dummies";
+import { useController, useModel } from "./hooks/context";
+import { createImageMessage, randomBetween } from "./helpers/helper";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
@@ -31,18 +31,19 @@ import HighlightOutlinedIcon from "@mui/icons-material/HighlightOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-const ControlPanel = () => {
+const Panel = () => {
+  const { mode, themeMode } = useModel();
+
   const {
-    generateFake,
-    clearChat,
-    scrollTo,
-    highlight,
-    reply,
-    mode,
-    updateMode,
-    themeMode,
+    prePend,
     updateThemeMode,
-  } = useChat();
+    updateMode,
+    reply,
+    scrollTo,
+    clearChat,
+    generateFake,
+    highlight,
+  } = useController();
 
   return (
     <Box
@@ -52,6 +53,14 @@ const ControlPanel = () => {
         padding: 1,
       }}
     >
+      <Typography
+        variant={"h5"}
+        sx={{
+          borderBottom: "2px solid whitesmoke",
+        }}
+      >
+        Control Panel
+      </Typography>
       <Section section={"Modes"}>
         <FormGroup>
           <Stack direction="row" spacing={1} alignItems="center">
@@ -149,6 +158,13 @@ const ControlPanel = () => {
               1500
             </Button>
           </ButtonGroup>
+          <Button
+            onClick={() => {
+              prePend();
+            }}
+          >
+            Prepend
+          </Button>
         </Stack>
       </Section>
       <Section section={"Interactions"}>
@@ -215,18 +231,23 @@ const Section: FC<{
     <Box
       sx={{
         borderBottom: "2px solid whitesmoke",
-        paddingBottom: 1,
+        py: 1,
       }}
     >
       <Typography
         sx={{
-          marginLeft: 0.4,
-          // marginBottom: 1,
+          marginLeft: 1,
         }}
       >
         {section}
       </Typography>
-      {children}
+      <Box
+        sx={{
+          marginLeft: 2,
+        }}
+      >
+        {children}
+      </Box>
     </Box>
   );
 };
@@ -235,7 +256,7 @@ const UserController: FC<{
   user: UserObject;
 }> = ({ user }) => {
   const { id, name, avatar, generateMessage } = user;
-  const { addNewMessage } = useChat();
+  const { addNewMessage } = useController();
 
   return (
     <Box
@@ -313,18 +334,10 @@ const UserController: FC<{
 };
 
 const UI = () => {
-  const {
-    updateAvatar,
-    updateTitle,
-    updateDays,
-    updateLoading,
-    avatar,
-    title,
-    days,
-    loading,
-    typing,
-    updateTyping,
-  } = useChat();
+  const { avatar, title, days, loading, typing } = useModel();
+  const { updateAvatar, updateTitle, updateDays, updateLoading, updateTyping } =
+    useController();
+
   return (
     <Box sx={{ display: "flex" }}>
       <FormGroup>
@@ -390,4 +403,4 @@ const UI = () => {
   );
 };
 
-export default ControlPanel;
+export default memo(Panel);

@@ -7,8 +7,8 @@ import {
   randomMultiAmount,
   uuid4,
 } from "./helper";
-import { Users, User, UserNames } from "./types";
-import { Image, File, MessageProps, MessageImageProps } from "reactchatt";
+
+import { Users, File, UserNames, MessageProps } from "../types";
 
 export const users: Users = {
   me: {

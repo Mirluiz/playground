@@ -1,4 +1,4 @@
-import { MessageProps } from "reactchatt";
+import { MessageProps } from "../types";
 import { users } from "./Dummies";
 import { uuid4 } from "./helper";
 const generateFakeImage = (): string => {
@@ -54,7 +54,7 @@ export const generateFake = (q: number): Array<MessageProps> => {
       images: isImage
         ? [
             {
-              id: _i + "image",
+              id: uuid4(),
               title: "image" + _i,
               url: generateFakeImage(),
               height: 100,
@@ -66,7 +66,7 @@ export const generateFake = (q: number): Array<MessageProps> => {
       text: generateFakeText(10, 1),
       owner: isLeft ? users.brodsky : users.me,
       type: isImage ? "img" : "text",
-      id: _i.toString(),
+      id: uuid4(),
       repliedMessage: needReply ? messages[_i - 1] : undefined,
     });
     _i++;
@@ -276,4 +276,18 @@ const addStatic = (messages: Array<MessageProps>, _i: number) => {
     owner: users.me,
     type: "any",
   });
+
+  messages.push({
+    id: uuid4(),
+    date: getDay(-1),
+    status: 1,
+    edited: true,
+    text: "Edited message",
+    owner: users.me,
+    type: "text",
+  });
+};
+
+export const prePend = (arr: Array<MessageProps>): Array<MessageProps> => {
+  return [...generateFake(10), ...arr];
 };
